@@ -6,8 +6,8 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface IDetailCourseRepository extends JpaRepository<DetailCourse,Long> {
-    Iterable<DetailCourse>findDetailCourseByStatus(String status);
-//    Iterable<DetailCourse>findDetailCourseByU(String status);
+//    Iterable<DetailCourse>findDetailCourseByStatus(String status);
+//    Iterable<DetailCourse>findDetailCourseBy(String status);
 
 
 }

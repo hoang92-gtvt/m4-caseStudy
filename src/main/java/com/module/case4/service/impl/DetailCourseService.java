@@ -41,7 +41,14 @@ public class DetailCourseService implements IDetailCourseService {
 
     @Override
     public Iterable<DetailCourse> findAllByStatusContaining(String status) {
-        return repository.findDetailCourseByStatus(status);
+        List<DetailCourse> detailCourses = new ArrayList<>();
+        List<DetailCourse> detailCourses1 = repository.findAll();
+        for (int i = 0; i < detailCourses1.size(); i ++){
+            DetailCourse detailCourse = detailCourses1.get(i);
+            if (detailCourse.getStatus().name().equals(status)){
+                detailCourses.add(detailCourse);
+            }else return new ArrayList<>();
+        }return detailCourses;
     }
 
     @Override
@@ -87,6 +94,7 @@ public class DetailCourseService implements IDetailCourseService {
         }
         return detailCourse;
     }
+
 
     @Override
     public List<DetailCourse> findDetailByStatus(String status, List<DetailCourse> detailCourses) {

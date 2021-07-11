@@ -62,8 +62,17 @@ public class DetailCourseController {
     }
 
     @GetMapping("/find/{name}/{status}")
-    public ResponseEntity<?> findByDetailByStatus(@PathVariable String name,@PathVariable String status){
+    public ResponseEntity<?> findByDetailByNameAndStatus(@PathVariable String name,@PathVariable String status){
         List<DetailCourse> detailCourse = (List<DetailCourse>) detailCourseService.findDetailByUserStudentAndStatus(name,status);
+        if (detailCourse!=null){
+            return new ResponseEntity<>(detailCourse,HttpStatus.OK);
+        }
+        return new  ResponseEntity<>(HttpStatus.NOT_FOUND);
+    }
+
+    @GetMapping("/find/{status}")
+    public ResponseEntity<?> findByDetailByStatus(@PathVariable String status){
+        List<DetailCourse> detailCourse = (List<DetailCourse>) detailCourseService.findAllByStatusContaining(status);
         if (detailCourse!=null){
             return new ResponseEntity<>(detailCourse,HttpStatus.OK);
         }

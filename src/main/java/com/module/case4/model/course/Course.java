@@ -32,8 +32,6 @@ public class Course {
     @Max(12)
     private Long groupName;
 
-
-
     @ManyToOne
 //    @JoinColumn( name = "district")
     private District district;
