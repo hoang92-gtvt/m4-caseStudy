@@ -51,6 +51,9 @@ public class DetailCourseService implements IDetailCourseService {
         }return detailCourses;
     }
 
+
+
+
     @Override
     public List<DetailCourse> findDetailByUserStudentAndStatus(String name, String status) {
         List<DetailCourse> detailCourses = new ArrayList<>();
@@ -67,7 +70,23 @@ public class DetailCourseService implements IDetailCourseService {
         return detailCourses;
     }
 
-//lấy ra chi tiết các khoá học trong page sinh viên
+    @Override
+    public List<DetailCourse> findDetailByUserTeacherAndStatus(String name, String status) {
+        List<DetailCourse> detailCourses = new ArrayList<>();
+        List<DetailCourse> detailCourses1 = repository.findAll();
+        for (int i = 0; i < detailCourses1.size(); i++){
+            DetailCourse detailCourse = detailCourses1.get(i);
+            String name1 =detailCourse.getUserTeacher().getName();
+            Status status1 = detailCourse.getStatus();
+            if (name1.equals(name)
+                    && status1.name().equals(status)){
+                detailCourses.add(detailCourse);
+            }
+        }
+        return detailCourses;
+    }
+
+    //lấy ra chi tiết các khoá học trong page sinh viên
     @Override
     public List<DetailCourse> findDetailByUserStudent(String name) {
         List<DetailCourse> detailCourses = new ArrayList<>();
